@@ -1,7 +1,6 @@
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from xgboost import XGBClassifier
 import pandas as pd
 
 
@@ -23,15 +22,9 @@ def train_logistic_regression_classifier(X_train,y_train):
     lr.fit(X_train, y_train)
     return lr
 
-def train_xgboost_classifier(X_train,y_train):
-
-    xgb = XGBClassifier()
-    xgb.fit(X_train,y_train)
-    return xgb
 
 models = {
     'decision-tree': train_decision_tree_classifier,
     'random-forest': train_random_forest_classifier,
-    'logistic-regression': train_logistic_regression_classifier,
-    'xgboost': train_xgboost_classifier
+    'logistic-regression': train_logistic_regression_classifier
 }
