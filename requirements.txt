@@ -1,8 +1,11 @@
-xgboost==0.72.1
 Flask==0.12.2
-pymssql==2.2.0.dev0
+# pymssql==2.2.0.dev0
 matplotlib==2.2.2
 plac==0.9.6
 numpy==1.14.3
 pandas==0.22.0
 scikit_learn==0.19.2
+SQLAlchemy==1.2.10
+sqlsoup==0.9.1
+Flask-Bootstrap==3.3.7.1
+Flask-WTF==0.14.2

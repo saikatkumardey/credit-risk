@@ -59,13 +59,16 @@ For windows, you can set an environment variable by running,
 
 To train the models, run:
 
-        > python train.py monthEndValue classifierName pathToSaveModel
+        > python train.py classifierName -n numberOfSamples modelName
 
 Example:
 
-    > python train.py 101 random-forest data/models/rf-model
+    > python train.py random-forest -n 10000 rf10000
 
-Here, monthEnd = 101, classifier = random-forest, path = data/models/rf-model
+Here, classifier = random-forest, modelName = rf10000
+
+The model will get saved at data/models/rf10000.model
+The features will get saved at data/features/rf10000.features
 
 You can run other classifiers by changing the name of the classifier to one from {decision-tree,random-forest,logistic-regression,xgboost}.
 
@@ -84,8 +87,7 @@ For help, run:
 
 run:
 
-        set MODEL_PATH="data/models/rf-87.model" #for windows
-        set TRAINING_MONTH=101 #set training month, trainingMonth is the month for which you had trained your model.
+        set MODEL_FILENAME="rf10000" #for windows
         python wsgi.py #this will run the webservice at port 5000
 
 
@@ -106,14 +108,14 @@ Response:
 {
   "data": [
     {
-      "LoanCode": 0.0, 
+      "LoanCode": 0, 
       "bad": 0.0, 
-      "good": 1.0
+      "good": 100.0
     }, 
     {
-      "LoanCode": 1.0, 
-      "bad": 0.0, 
-      "good": 1.0
+      "LoanCode": 1, 
+      "bad": 23.0, 
+      "good": 77.0
     }
   ],
   "status": "successful",
