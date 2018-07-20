@@ -85,20 +85,18 @@ For help, run:
 run:
 
         set MODEL_PATH="data/models/rf-87.model" #for windows
+        set TRAINING_MONTH=101 #set training month, trainingMonth is the month for which you had trained your model.
         python wsgi.py #this will run the webservice at port 5000
 
 
 
 ## How to consume the Web Service ?
 
-Endpoint: http://0.0.0.0:5000/api/predict?monthEnd=101&trainingMonth=100
+Endpoint: http://0.0.0.0:5000/api/predict?monthEnd=101
 
-It has 2 query arguments: monthEnd and trainingMonth.
+It has 2 query arguments: monthEnd
 
 monthEnd is the month for which you want to predict.
-trainingMonth is the month for which you had trained your model.
-
-So, according to the endpoint, we've trained a model for month=100 and we want to predict for month=101, hence, trainingMonth=100 and monthEnd=101.
 
 Response:
 

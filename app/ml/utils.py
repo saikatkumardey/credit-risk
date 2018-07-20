@@ -9,7 +9,7 @@ import pandas as pd
 from sklearn.externals import joblib
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import cross_val_score
-from app.ml.config import FEATURE_DIR
+from app.ml.config import MODEL_DIR,FEATURE_DIR,MODEL_FILENAME
 
 np.set_printoptions(precision=2)
 
@@ -82,19 +82,22 @@ def get_model_evaluation_report(model, X_test, y_test):
 
 def predict_batches(model,data):
 
-    probabilities = model.predict_proba(data)
+    probabilities = model.predict_proba(data)*100.0
+    probabilities = np.round(probabilities,2)
     class_names = model.classes_
     pred_df = pd.DataFrame(probabilities,columns= class_names)
     return pred_df
 
-def load_model(path):
-    model = joblib.load(path)
-    print("model loaded from {}".format(path))
+def load_model():
+    filepath = os.path.join(MODEL_DIR,MODEL_FILENAME+'.model')
+    model = joblib.load(filepath)
+    print("model loaded from {}".format(filepath))
     return model
 
-def save_model(model,path):
-    joblib.dump(model,path,compress=True)
-    print("model saved to {}".format(path))
+def save_model(model,modelFileName= MODEL_FILENAME):
+    filepath = os.path.join(MODEL_DIR,modelFileName+'.model')
+    joblib.dump(model,filepath,compress=True)
+    print("model saved to {}".format(filepath))
 
 
 def save_prediction_to_csv(df,path):
@@ -102,17 +105,15 @@ def save_prediction_to_csv(df,path):
     print("predictions written to {} successfully!".format(path))
 
 
-def save_feature_names(features,monthEnd):
-    filename = "features-{}".format(monthEnd)
-    filepath = os.path.join(FEATURE_DIR,filename)
+def save_feature_names(features,modelFileName=MODEL_FILENAME):
+    filepath = os.path.join(FEATURE_DIR,modelFileName+'.features')
     with open(filepath,'w') as file:
         json.dump(features,file)
     print("Features written to {}".format(filepath))
 
 
-def read_features_from_disk(monthEnd):
-    filename = "features-{}".format(monthEnd)
-    filepath = os.path.join(FEATURE_DIR,filename)
+def read_features_from_disk():
+    filepath = os.path.join(FEATURE_DIR,MODEL_FILENAME+'.features')
     features = []
     with open(filepath) as file:
         features = json.load(file)

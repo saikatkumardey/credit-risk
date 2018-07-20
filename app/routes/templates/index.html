@@ -1,0 +1,25 @@
+ {%- extends "base.html" %} {% import "bootstrap/utils.html" as utils %} {% import "bootstrap/wtf.html" as wtf %} {% import
+"bootstrap/utils.html" as util %} {% block content %} {{util.flashed_messages(dismissible=True)}}
+<div class="container-fluid">
+  <div class="jumbotron">
+    <h1 align="center">Detect Bad Loans using ML</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg" style="width: 60rem; margin: 0 auto; margin-top: 2rem; float: none; margin-bottom: 10px;">
+      {% if good_pct and bad_pct %}
+      <button type="button" class="btn btn-success btn-block disabled">{{good_pct}} % Good</button>
+      <button type="button" class="btn btn-danger btn-block disabled">{{bad_pct}} % Bad</button>
+      {% else %}
+      <br>
+      <br>
+      {% endif %}
+    </div>
+    <div class="col-lg">
+        <div class="card" style="width: 60rem; margin: 0 auto; margin-top: 2rem; float: none; margin-bottom: 10px;">
+          {{ wtf.quick_form(form, button_map={'submit_button':'primary'}) }}
+        </div>
+      </div>
+    </div>
+</div>
+
+{%- endblock %}

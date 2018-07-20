@@ -5,17 +5,17 @@ from pathlib import Path
 
 
 @plac.annotations(
-    monthEnd=("The monthEnd for which data should be fetched",'positional',None,int),
     classifier=("Name of the classifier",'positional',None,str,list(models.keys())),
-    path = ("Path where the model should be saved",'positional',None,Path)
+    filename = ("Name of the model file",'positional',None,str),
+    numSamples = ("Number of training samples.",'option',None,int,None,'n'),
 )
-def main(monthEnd,classifier,path):
+def main(classifier,filename,numSamples=10000):
     '''
-    example: python cli.py 101 random-forest data/models/rf-model
+    example: python train.py random-forest 10000 rf
     '''
 
     from app.ml.pipeline import train
-    train(monthEnd=monthEnd,classifierName=classifier,path_to_save=path)
+    train(classifierName=classifier,numSamples=numSamples,modelFileName=filename)
 
 
 if __name__ == '__main__':
