@@ -11,7 +11,7 @@ from pathlib import Path
 )
 def main(classifier,filename,numSamples=10000):
     '''
-    example: python train.py random-forest 10000 rf
+    example: python train.py random-forest -n 10000 rf
     '''
 
     from app.ml.pipeline import train

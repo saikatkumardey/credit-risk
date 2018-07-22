@@ -29,10 +29,6 @@ def index():
     return render_template('index.html',form=form)
 
 
-@app.route("/api/predict-single",methods=['POST'],strict_slashes=False)
-def predict_single():
-    return "predictions for single loan."
-
 @app.route("/api/predict-batches",methods=['GET'],strict_slashes=False)
 def get_predictions():
     monthEnd = request.args.get('monthEnd',101)

@@ -87,14 +87,14 @@ For help, run:
 
 run:
 
-        set MODEL_FILENAME="rf10000" #for windows
+        set MODEL_FILENAME="rf10000" #this will load the model from data/models/rf10000.model
         python wsgi.py #this will run the webservice at port 5000
 
 
 
 ## How to consume the Web Service ?
 
-Endpoint: http://0.0.0.0:5000/api/predict?monthEnd=101
+Endpoint: http://0.0.0.0:5000/api/predict-batches?monthEnd=101
 
 It has 2 query arguments: monthEnd
 
