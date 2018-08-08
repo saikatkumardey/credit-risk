@@ -1,4 +1,5 @@
 __pycache__
 *.pyc
+data/models
 data/models/**
 data/features/**
