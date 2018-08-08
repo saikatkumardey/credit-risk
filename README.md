@@ -2,7 +2,6 @@
 
 This project uses Machine Learning to predict which loans are at risk depending on the features of the client and loan features.
 
-It contains scripts to 
 
 # Requirements:
 
